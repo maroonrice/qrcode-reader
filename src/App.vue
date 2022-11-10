@@ -16,7 +16,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
 <router-link to="/" class="brand-link">
-<img src="/vite.svg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+<img src="/maroon96.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
 <span class="brand-text font-weight-light">QR Code Reader</span>
 </router-link>
 
