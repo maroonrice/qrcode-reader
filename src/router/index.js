@@ -5,7 +5,12 @@ import Camera from '../components/Camera.vue'
 const routes = [
   {
     path: "/",
-    name: "Menu",
+    name: "Root",
+    component: Menu,
+  },
+  {
+    path: "/index.html",
+    name: "Index",
     component: Menu,
   },
   {
