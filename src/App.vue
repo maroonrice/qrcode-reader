@@ -8,14 +8,14 @@
 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
 </li>
 <li class="nav-item d-none d-sm-inline-block">
-<router-link to="/" class="nav-link">Menu</router-link>
+<router-link to="/index.html" class="nav-link">Menu</router-link>
 </li>
 </ul>
 </nav>
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
-<router-link to="/" class="brand-link">
+<router-link to="/index.html" class="brand-link">
 <img src="/maroon96.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
 <span class="brand-text font-weight-light">QR Code Reader</span>
 </router-link>
@@ -25,11 +25,19 @@
 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
 <li class="nav-item">
+<router-link to="/index.html" class="nav-link">
+<i class="nav-icon fas fa-th"></i>
+<p>
+Menu
+</p>
+</router-link>
+</li>
+
+<li class="nav-item">
 <router-link to="/page/camera" class="nav-link">
 <i class="nav-icon fas fa-th"></i>
 <p>
 Camera
-<span class="right badge badge-danger">New</span>
 </p>
 </router-link>
 </li>
@@ -43,7 +51,7 @@ Camera
 <strong>Copyright &copy; 2022 <a href="#">Maroon Rice</a>.</strong>
 All rights reserved.
 <div class="float-right d-none d-sm-inline-block">
-<b>Version</b> 3.2.0
+<b>Version</b> 0.0.0
 </div>
 </footer>
 

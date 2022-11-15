@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "admin-lte": "3.2",
+    "jsqr": "^1.4.0",
     "vue": "^3.2.41",
     "vue-router": "^4.1.6"
   },
