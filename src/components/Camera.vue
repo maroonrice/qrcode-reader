@@ -27,7 +27,8 @@
       </div>
       <div class="alert alert-info alert-dismissible" v-if="qrcode_value">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true" @click="deleteQrCodeValue">×</button>
-        {{ qrcode_value }}
+        <a :href="qrcode_value" v-if="qrcode_value.startsWith('http')" target="_blank">{{ qrcode_value }}</a>
+        <p v-else>{{ qrcode_value }}</p>
       </div>
       <div>
         <video id="js-video" class="reader-video" playsinline :srcObject.prop="video.stream" @loadedmetadata="onloadedmetadata" @resize="onresize"></video>
@@ -65,30 +66,35 @@ export default {
     }
   },
   mounted() {
-    const thisObj = this
-    navigator.mediaDevices
-      .getUserMedia({
-        audio: false,
-        video: {
-          width: { min: 960 },
-          height: { min: 1280 },
-          facingMode: {
-            exact: 'environment'
-          }
-        }
-      }).then((stream) => {
-        thisObj.video.stream = stream
-      }).catch((err) => {
-        thisObj.messages.push("カメラを起動できませんでした")
-      })
+    this.cameraStart()
   },
   beforeUnmount() {
-    if (this.video.stream) {
-      this.video.stream.getTracks().forEach(track => { track.stop() })
-      this.video.stream = undefined
-    }
+    this.cameraEnd()
   },
   methods: {
+    cameraStart() {
+      navigator.mediaDevices
+        .getUserMedia({
+          audio: false,
+          video: {
+            width: { min: 960 },
+            height: { min: 1280 },
+            facingMode: {
+              exact: 'environment'
+            }
+          }
+        }).then((stream) => {
+          this.video.stream = stream
+        }).catch((err) => {
+          this.messages.push("カメラを起動できませんでした")
+        })
+    },
+    cameraEnd() {
+      if (this.video.stream) {
+        this.video.stream.getTracks().forEach(track => { track.stop() })
+        this.video.stream = undefined
+      }
+    },
     onloadedmetadata(e) {
       e.target.play()
       this.video.tag = e.target
@@ -104,7 +110,7 @@ export default {
       this.messages.splice(index,1)
     },
     deleteQrCodeValue() {
-      this.qrcodechecker()
+      this.cameraStart()
     },
     qrcodechecker() {
       this.qrcode_value = undefined
@@ -119,6 +125,7 @@ export default {
           const code = jsQR(imageData.data, this.video.width, this.video.height)
           if (code) {
             this.qrcode_value = code.data
+            this.cameraEnd()
           } else {
             const interval = new Date().getMilliseconds() - start
             setTimeout(() => { checkImage() }, Math.max(interval, 200))

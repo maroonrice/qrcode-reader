@@ -22,7 +22,8 @@ export default defineConfig({
             sizes: '718x718',
             type: 'image/png'
           },
-        ]
+        ],
+        "scope": "/"
       }
     })
   ]
